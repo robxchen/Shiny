@@ -1,14 +1,21 @@
 fluidPage(
-  titlePanel("US Fuel Consumption for Electricity"),
+  titlePanel("Fuel Consumption and Electric Generation in the US"),
   
   sidebarLayout(
     sidebarPanel(
-      selectInput(
+      radioButtons(
         'view',
         label = h3('Select view'),
+        choices = c('Fuel consumption',
+                    'Electric generation'),
+        selected = 'Fuel consumption'
+      ),
+      selectInput(
+        'graph',
+        label = h3('Select graph'),
         choices = c(
-          'Ranked by highest fuel consumption',
-          'Ranked by lowest fuel consumption',
+          'Ranked by highest total',
+          'Ranked by lowest total',
           'Ranked by highest state population',
           'Ranked by lowest state population',
           'Ranked by highest state GDP',
@@ -38,7 +45,11 @@ fluidPage(
       radioButtons(
         "per",
         label = h3("Adjustment factors"),
-        choices = c('No adjustment', 'Per capita, state population', 'Per state GDP, $ Mils'),
+        choices = c(
+          'No adjustment',
+          'Per capita, state population',
+          'Per state GDP, $ Mils'
+        ),
         selected = 'No adjustment'
       ),
       radioButtons(
